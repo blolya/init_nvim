@@ -2,24 +2,18 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'sainnhe/gruvbox-material'
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
-
 " Completion framework
 Plug 'hrsh7th/nvim-cmp'
-
 " LSP completion source for nvim-cmp
 Plug 'hrsh7th/cmp-nvim-lsp'
-
 " Snippet completion source for nvim-cmp
 Plug 'hrsh7th/cmp-vsnip'
-
 " Other usefull completion sources
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
-
 " See hrsh7th's other plugins for more completion sources!
 " To enable more of the features of rust-analyzer, such as inlay hints and more!
 Plug 'simrat39/rust-tools.nvim'
-
 " Snippet engine
 Plug 'hrsh7th/vim-vsnip'
 
@@ -28,6 +22,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'tpope/vim-fugitive'
 
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -40,6 +35,8 @@ call plug#end()
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set number
+set cursorline
+set relativenumber
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
@@ -81,8 +78,10 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 
+noremap <silent> bd :bd <CR>
+
 " rooter settings --------------
-let g:rooter_patterns = ['Cargo.toml']
+let g:rooter_patterns = ['Cargo.toml', 'stack.yaml']
 
 " theme settings ---------------
 " For dark version.
@@ -151,3 +150,5 @@ cmp.setup({
   },
 })
 EOF
+"highlight CursorLineNr term=NONE cterm=NONE ctermfg=Red ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
+highlight CursorLineNr ctermfg=Red
